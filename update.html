@@ -1,0 +1,27 @@
+<!-- Update Task Page -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Task</title>
+    <script>
+        function updateTask() {
+            let id = document.getElementById("taskId").value;
+            let status = document.getElementById("status").value;
+            
+            fetch("tasks.php", {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id, status })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message));
+        }
+    </script>
+</head>
+<body>
+    <h2>Update Task</h2>
+    <input type="text" id="taskId" placeholder="Task ID"><br>
+    <input type="text" id="status" placeholder="New Status"><br>
+    <button onclick="updateTask()">Update Task</button>
+</body>
+</html>

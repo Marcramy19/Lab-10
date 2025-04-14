@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Tasks</title>
+    <script>
+        fetch("tasks.php")
+        .then(response => response.json())
+        .then(data => {
+             // Check if response is empty
+        if (!Array.isArray(data) || data.length === 0) {
+            document.getElementById("tasks").innerHTML = "<p>No tasks found.</p>";
+            return;
+        }
+
+        // Display tasks in an unordered list
+        let taskList = "<ul>";
+        for (let i = 0; i < data.length; i++) {
+            taskList += `<li>${data[i].title}: ${data[i].description} - ${data[i].status}</li>`;
+        }
+        taskList += "</ul>";
+
+            document.getElementById("tasks").innerHTML = taskList;
+        });
+    </script>
+</head>
+<body>
+    <h2>Task List</h2>
+    <div id="tasks"></div>
+</body>
+</html>

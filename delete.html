@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Task</title>
+    <script>
+        function deleteTask() {
+            let id = document.getElementById("taskId").value;
+            
+            fetch("tasks.php", { 
+                method: "DELETE" ,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            })
+            .then(response => response.json())
+            .then(data => alert(data.message));
+        }
+    </script>
+</head>
+<body>
+    <h2>Delete Task</h2>
+    <input type="text" id="taskId" placeholder="Task ID"><br>
+    <button onclick="deleteTask()">Delete Task</button>
+</body>
+</html>
